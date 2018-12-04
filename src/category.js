@@ -1,11 +1,9 @@
 class Category{
-  constructor(){
+  constructor(id, name, items){
     this.id = id,
     this.name = name,
-    this.items = items,
-    Category.all.push(this)
+    this.items = items
   }
 
 
 }
-Category.all = []

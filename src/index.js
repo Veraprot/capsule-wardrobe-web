@@ -1,7 +1,7 @@
 const addBtn = document.querySelector('#new-toy-btn')
 const toyForm = document.querySelector('.container')
-const categories = new categoryController()
-let all = categories.getCategoryFromAPI()
+const categories = new CategoryController()
+let all = categories.getCategoriesFromAPI()
 // console.log(adapter);
 let addToy = false
 
