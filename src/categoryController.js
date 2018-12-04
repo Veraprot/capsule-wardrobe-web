@@ -9,7 +9,10 @@ class CategoryController {
         data.forEach(category => {
           this._categories.push(new Category(category.id, category.name, category.items))
         })
-        console.log(this._categories);
       })
+  }
+
+  renderAll(){
+    console.log("HERE", this._categories);
   }
 }
