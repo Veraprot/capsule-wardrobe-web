@@ -1,4 +1,4 @@
-class categoryController {
+class CategoryController {
   constructor(){
     this._categories = [],
     this.adapter = new Adapter
