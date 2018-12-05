@@ -12,9 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // CategoryController.getCategoriesFromAPI()
 // let all = categories.getCategoriesFromAPI()
+  
 
-
-renderHTML();
 
   addBtn.addEventListener('click', () => {
     // hide & seek with the form
