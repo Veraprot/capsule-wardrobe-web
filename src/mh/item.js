@@ -8,7 +8,7 @@ class Item {
     console.log(Item.all);
   }
   render() {
-      return `<li>${this.name} <img src=${this.image}> <button data-item-id="${this.id}">Release</button></li>`
+      return `<li class="category-item">${this.name} <img class="item-image" src=${this.image}></li>`
     }
 }
 

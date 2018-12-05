@@ -19,19 +19,24 @@ class Category {
         json.forEach(categoryObj => {
           let newCategory = new Category(categoryObj)
           console.log(newCategory);
-          // this.items.push(categoryObj.items);
-          // categoryObj.items.forEach(catObj => {
-          //   new Item(catObj)
-          // })
         })
       })
   }
+
+  static create(obj) {
+    return Category.adapter.post(obj)
+      .then(json => {
+        console.log(json)
+
+      })
+  }
+
   renderCard() {
     console.log(this);
-    return `<div data-id="${this.id}"><p>${this.name}</p>
-              <button data-id="${this.id}">Add</button>
-              <ul>
-              // ${this.renderItems()}
+    return `<div class="category-container" data-id="${this.id}"><p>${this.name}</p>
+              <ul class="category-inner-container">
+                 ${this.renderItems()}
+                 <li class="category-item add-item-container" data-id="${this.id}">+</li>
               </ul>
             </div>`
   }
