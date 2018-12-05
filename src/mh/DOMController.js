@@ -30,11 +30,11 @@ containerListener(){
       addToy = !addToy
       if (addToy) {
         this.popUpForm.style.display = 'block'
-      // }
-    // } else if(e.target.innerText = "Donate"){
-    //   (e.target.id);
-    //   let deleteItemId = (parseInt(e.target.id))
-    //
+      }
+    } else if(e.target.innerText = "Donate"){
+      (e.target.id);
+      let deleteItemId = (parseInt(e.target.id))
+
     } else {
       this.popUpForm.style.display = 'none'
     }
@@ -43,7 +43,7 @@ containerListener(){
 
 
 formListener(){
-  form.addEventListener('submit', (e) =>{
+  this.form.addEventListener('submit', (e) =>{
     e.preventDefault();
 
     let addItemId = (parseInt(e.target.dataset.id))
@@ -60,7 +60,7 @@ formListener(){
 
 
   createOutfit() {
-    Outfit.createNew();    
+    Outfit.createNew();
     this.outfit.innerHTML += Outfit.all[Outfit.all.length - 1].renderOutfitCard()
   }
 
