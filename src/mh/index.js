@@ -3,11 +3,23 @@ const BASE_URL = "http://localhost:3000"
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  let outfit = document.getElementById('outfit-collection')
+  
   const controller = new DOMController
   controller.init()
+  const addOutfit = document.getElementById('new-outfit')
 
 
-  let addToy = false
+  outfit.addEventListener('click', event=> {
+    if(event.target.id == "new-outfit") {
+      controller.createOutfit();
+      console.log(Outfit.all);
+    } 
+    else {
+      controller.activateOutfit(event.target);
+    }
+  });
+  
   controller.main.addEventListener('click', (e)=>{
     if(e.target.className === "category-item add-item-container"){
       controller.form.dataset.id = e.target.dataset.id
@@ -31,8 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
     controller.form.reset()
     controller.popUpForm.style.display = 'none'
   })
-
-
-
-
 })
