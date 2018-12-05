@@ -2,6 +2,7 @@ class DOMController {
   constructor() {
     this.main = document.getElementById('category-collection')
     this.form = document.getElementById('capsule-form')
+    this.popUpForm = document.getElementById('pop-up-container')
   }
 
   init() {
@@ -13,6 +14,6 @@ class DOMController {
       this.main.innerHTML = Category.all.map(t => t.renderCard()).join('');
     }
 
-  
+
 
 }

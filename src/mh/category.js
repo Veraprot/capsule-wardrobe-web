@@ -11,6 +11,7 @@ class Category {
   addItem(item) {
     let newItem = new Item(item)
     this.items.push(newItem)
+    return Category.adapter.postItem(newItem)
   }
 
   static populateFromAPI() {
@@ -18,7 +19,6 @@ class Category {
       .then(json => {
         json.forEach(categoryObj => {
           let newCategory = new Category(categoryObj)
-          console.log(newCategory);
         })
       })
   }
@@ -29,6 +29,10 @@ class Category {
         console.log(json)
 
       })
+  }
+
+  static find(id) {
+    return Category.all.find(c => c.id == id)
   }
 
   renderCard() {

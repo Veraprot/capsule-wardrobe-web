@@ -1,10 +1,6 @@
 class JSONAPIAdapter{
   constructor(baseURI){
     this.baseURI = baseURI
-    this.defaultHeaders = {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
   }
   getAll() {
       return this._send(this.baseURI, {
@@ -12,8 +8,9 @@ class JSONAPIAdapter{
       })
     }
 
-  post(obj) {
-    return this._send(this.baseURI, {
+  postItem(obj) {
+    // debugger
+    return this._send(this.baseURI + `/${obj.category_id}/items`, {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -27,7 +24,7 @@ class JSONAPIAdapter{
       return fetch(endpoint, options)
         .then(r => {
           if (r.ok) {
-            return r.json()
+            return r.json();
           } else {
             throw r
           }
