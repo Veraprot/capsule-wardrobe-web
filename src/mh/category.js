@@ -28,11 +28,10 @@ class Category {
   }
   renderCard() {
     console.log(this);
-    return `<div data-id="${this.id}"><p>${this.name}</p>
-              <button data-id="${this.id}">Add</button>
-              <ul>
-              // ${this.renderItems()}
-              </ul>
+    return `<div class="card" data-id="${this.id}"><p>${this.name}</p>
+            <ul>
+            <div id="container">${this.renderItems()}<div>
+            </ul>
             </div>`
   }
   renderItems() {
