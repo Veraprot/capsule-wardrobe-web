@@ -9,7 +9,6 @@ class JSONAPIAdapter{
     }
 
   postItem(obj) {
-    // debugger
     return this._send(this.baseURI + `/${obj.category_id}/items`, {
       method: 'POST',
       headers: {

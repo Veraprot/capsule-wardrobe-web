@@ -12,6 +12,11 @@ class Category {
     let newItem = new Item(item)
     this.items.push(newItem)
     return Category.adapter.postItem(newItem)
+    .then(json => {
+      console.log(json);
+      debugger
+      DOMController.renderAddedItem(json)
+    })
   }
 
   static populateFromAPI() {

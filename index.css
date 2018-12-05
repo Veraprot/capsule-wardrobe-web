@@ -44,10 +44,10 @@ button {
   background-color: grey;
   border: none;
   border-radius: 5px;
-  height: 3rem;
+  height: 2rem;
   width: max-content;
   color: whitesmoke;
-  font-size: 18px;
+  font-size: 12px;
   justify-self: center;
 }
 
@@ -105,12 +105,12 @@ button:hover {
   justify-content: center;
 }
 
-/* #category-collection {
+#category-collection {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-} */
+}
 
 
 
@@ -135,7 +135,8 @@ button:hover {
   justify-content: center;
 }
 
-.add-item-container {
+.add-item-container:hover {
   color: white;
+  font-size: 20px;
   background-color: purple;
 }
