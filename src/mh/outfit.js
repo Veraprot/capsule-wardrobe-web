@@ -13,6 +13,7 @@ class Outfit {
     this.id = Outfit.all.indexOf(this) + 1;
   }
 
+  //dfgbgg
   renderOutfitCard() {
     return `<div class="outfit-container" id="active" data-id=${this.id}>
                  ${this.renderItems()}
