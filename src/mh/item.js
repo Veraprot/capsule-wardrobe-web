@@ -8,7 +8,7 @@ class Item {
     Item.all.push(this)
   }
   render() {
-      return `<li class="category-item">${this.name}  <img class="item-image" src=${this.image}>Times Worn: ${this.times_worn}<button id="item-${this.id}">Donate</button></li>`
+      return `<li class="category-item">${this.name}  <img class="item-image" src=${this.image}>Times Worn: ${this.times_worn}<button data-id="${this.category_id}-${this.id}">Donate</button></li>`
     }
 }
 

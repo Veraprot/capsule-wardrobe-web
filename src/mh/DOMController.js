@@ -32,8 +32,10 @@ class DOMController {
           this.popUpForm.style.display = 'block'
         }
       } else if (e.target.innerText === "Donate"){
-        console.log(e.target.id);
-        // let deleteItemId = (parseInt(e.target.id))
+        let deleteItemId = e.target.dataset.id.split("-")[1]
+        let deleteCatId = e.target.dataset.id.split("-")[0]
+        let foundCategory = Category.find(deleteCatId)
+        foundCategory.deleteItem(deleteItemId)
       } else {
         this.popUpForm.style.display = 'none'
         addToy = false

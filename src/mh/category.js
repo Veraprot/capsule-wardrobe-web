@@ -19,6 +19,10 @@ class Category {
     })
   }
 
+  deleteItem(itemId) {
+    return Category.adapter.delete(itemId, this.id)
+  }
+
   static populateFromAPI() {
     return Category.adapter.getAll()
       .then(json => {
