@@ -1,8 +1,6 @@
 class DOMController {
   constructor() {
     this.main = document.getElementById('category-collection')
-    this.outfit = document.getElementById('outfit-collection')
-    this.outfitList = document.getElementById('outfit-list')
     this.form = document.getElementById('capsule-form')
     this.popUpForm = document.getElementById('pop-up-container')
   }
@@ -48,42 +46,19 @@ class DOMController {
   }
 
 
-formListener(){
-  this.form.addEventListener('submit', (e) =>{
-    e.preventDefault();
+  formListener(){
+    this.form.addEventListener('submit', (e) =>{
+      e.preventDefault();
 
-    let addItemId = (parseInt(e.target.dataset.id))
-    let foundCategory = Category.find(addItemId)
-    let addedItem = { name: e.target.name.value, image: e.target.image.value, category_id: addItemId};
-    foundCategory.addItem(addedItem)
-      .then(() => {
-        this.render()
-      })
-    this.form.reset()
-    this.popUpForm.style.display = 'none'
-  })
-}
-
-
-  renderOutfit() {
-    this.outfit.addEventListener('click', event=> {
-      if(event.target.id == "new-outfit") {
-        this.createOutfit();
-        console.log(Outfit.all);
-      }
-      else {
-        this.activateOutfit(event.target);
-      }
-    });
-  }
-
-  createOutfit() {
-    Outfit.createNew();
-    this.outfitList.innerHTML += Outfit.all[Outfit.all.length - 1].renderOutfitCard()
-  }
-
-  activateOutfit(outfit) {
-      console.log(outfit)
-      outfit.id = 'active'
+      let addItemId = (parseInt(e.target.dataset.id))
+      let foundCategory = Category.find(addItemId)
+      let addedItem = { name: e.target.name.value, image: e.target.image.value, category_id: addItemId};
+      foundCategory.addItem(addedItem)
+        .then(() => {
+          this.render()
+        })
+      this.form.reset()
+      this.popUpForm.style.display = 'none'
+    })
   }
 }

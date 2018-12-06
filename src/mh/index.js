@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   controller.init()
   controller.containerListener()
   controller.formListener()
-  controller.renderOutfit()
   const addOutfit = document.getElementById('new-outfit')
 
 })
