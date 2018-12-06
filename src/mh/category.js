@@ -9,17 +9,21 @@ class Category {
   }
 
   addItem(item) {
-    let newItem = new Item(item)
-    this.items.push(newItem)
-    return Category.adapter.postItem(newItem)
-    .then(json => {
-      console.log(json);
-      debugger
-      DOMController.renderAddedItem(json)
+    return Category.adapter.postItem(item)
+    .then(data => {
+      let newItem = new Item(data);
+      this.items.push(newItem)
+      let index = Category.all.indexOf(this)
+      Category.all.splice(index,1,this)
+      return Category.all
     })
   }
 
   deleteItem(itemId) {
+    let updatedArr = this.items.filter ((e) => e.id != itemId)
+    this.items = updatedArr
+    let index = Category.all.indexOf(this)
+    Category.all.splice(index,1,this)
     return Category.adapter.delete(itemId, this.id)
   }
 
