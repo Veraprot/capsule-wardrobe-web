@@ -58,6 +58,12 @@ button:hover {
   color: #e04b52;
 }
 
+.button-class{
+  background-color: red;
+  font-size: 8px;
+  height: 1.5rem;
+}
+
 .pop-up-container {
   padding: 1rem;
   width: stretch;
@@ -164,6 +170,12 @@ button:hover {
   height: 50px;
   width: 50px;
   border: 1px solid black;
+}
+
+#outfit-creator{
+  display: flex;
+  flex-direction: row;
+
 }
 
 #outfit-list {
