@@ -1,8 +1,6 @@
 class DOMController {
   constructor() {
     this.main = document.getElementById('category-collection')
-    this.outfit = document.getElementById('outfit-collection')
-    this.outfitList = document.getElementById('outfit-list')
     this.form = document.getElementById('capsule-form')
     this.popUpForm = document.getElementById('pop-up-container')
   }
@@ -24,66 +22,52 @@ class DOMController {
   }
 
   containerListener() {
-    let addToy = false
-    this.main.addEventListener('click', (e)=>{
+    this.main.addEventListener('click', (e)=> {
       if(e.target.className === "category-item add-item-container"){
         this.form.dataset.id = e.target.dataset.id
-        addToy = !addToy
-        if (addToy) {
-          this.popUpForm.style.display = 'block'
-        }
+        this.popUpForm.style.display = 'block'
       } else if (e.target.innerText === "Donate"){
-        let deleteItemId = e.target.dataset.id.split("-")[1]
-        let deleteCatId = e.target.dataset.id.split("-")[0]
-        let foundCategory = Category.find(deleteCatId)
-        foundCategory.deleteItem(deleteItemId)
-          .then(() => {
-            this.render()
-          })
-      } else {
-        this.popUpForm.style.display = 'none'
-        addToy = false
+          this.donateItem();
       }
+    })
+
+    this.popUpForm.addEventListener('click', e => {
+      this.closeForm(e.target.id)
     })
   }
 
+  
 
-formListener(){
-  this.form.addEventListener('submit', (e) =>{
-    e.preventDefault();
-
-    let addItemId = (parseInt(e.target.dataset.id))
-    let foundCategory = Category.find(addItemId)
-    let addedItem = { name: e.target.name.value, image: e.target.image.value, category_id: addItemId};
-    foundCategory.addItem(addedItem)
+  donateItem() {
+    let deleteItemId = e.target.dataset.id.split("-")[1]
+    let deleteCatId = e.target.dataset.id.split("-")[0]
+    let foundCategory = Category.find(deleteCatId)
+    foundCategory.deleteItem(deleteItemId)
       .then(() => {
         this.render()
       })
-    this.form.reset()
-    this.popUpForm.style.display = 'none'
-  })
-}
-
-
-  renderOutfit() {
-    this.outfit.addEventListener('click', event=> {
-      if(event.target.id == "new-outfit") {
-        this.createOutfit();
-        console.log(Outfit.all);
-      }
-      else {
-        this.activateOutfit(event.target);
-      }
-    });
   }
 
-  createOutfit() {
-    Outfit.createNew();
-    this.outfitList.innerHTML += Outfit.all[Outfit.all.length - 1].renderOutfitCard()
+  closeForm(elementId) {
+    if(elementId === "pop-up-container" || elementId === "close-form" ) {
+      this.popUpForm.style.display = 'none'
+    }
   }
 
-  activateOutfit(outfit) {
-      console.log(outfit)
-      outfit.id = 'active'
+
+  formListener(){
+    this.form.addEventListener('submit', (e) =>{
+      e.preventDefault();
+
+      let addItemId = (parseInt(e.target.dataset.id))
+      let foundCategory = Category.find(addItemId)
+      let addedItem = { name: e.target.name.value, image: e.target.image.value, category_id: addItemId};
+      foundCategory.addItem(addedItem)
+        .then(() => {
+          this.render()
+        })
+      this.form.reset()
+      this.popUpForm.style.display = 'none'
+    })
   }
 }
