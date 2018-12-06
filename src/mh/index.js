@@ -3,7 +3,7 @@ const BASE_URL = "http://localhost:3000"
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  let outfit = document.getElementById('outfit-collection')
+  let outfit = document.getElementById('outfit-creator')
 
   const controller = new DOMController
   controller.init()
@@ -11,24 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
   controller.formListener()
   const addOutfit = document.getElementById('new-outfit')
 
+
+  let flkty = new Flickity( '.carousel', {
+    initialIndex: 1
+  });
+  
+  let appendButton = document.querySelector('.button--append');
+  appendButton.addEventListener( 'click', function() {
+    var cellElems = [ makeCell()];
+    flkty.append( cellElems );
+  });
+  
+  let cellCount = flkty.cells.length;
+  
+  function makeCell() {
+    if(outfit.innerHTML.trim() !== "") {
+      cellCount++;
+      let cell = document.createElement('div');
+      cell.className = 'outfit-cell';
+      cell.innerHTML = outfit.innerHTML;
+      return cell;
+    } 
+    else {
+      outfit.innerHTML = "please add some items";
+    }
+  }
 })
-
-let flkty = new Flickity( '.carousel', {
-  initialIndex: 1
-});
-
-let appendButton = document.querySelector('.button--append');
-appendButton.addEventListener( 'click', function() {
-  var cellElems = [ makeCell()];
-  flkty.append( cellElems );
-});
-
-let cellCount = flkty.cells.length;
-
-function makeCell() {
-  cellCount++;
-  let cell = document.createElement('div');
-  cell.className = 'outfit-cell';
-  cell.textContent = cellCount;
-  return cell;
-}
