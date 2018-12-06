@@ -49,7 +49,7 @@ class Category {
   }
 
   renderCard() {
-    return `<div class="category-container" data-id="${this.id}"><p>${this.name}</p>
+    return `<div class="category-container" data-id="${this.id}"><h1 class="category-header">${this.name}</h1>
               <ul class="category-inner-container">
                  ${this.renderItems()}
                  <li class="category-item add-item-container" data-id="${this.id}">+</li>

@@ -22,27 +22,36 @@ class DOMController {
   }
 
   containerListener() {
-    let addToy = false
-    this.main.addEventListener('click', (e)=>{
+    this.main.addEventListener('click', (e)=> {
       if(e.target.className === "category-item add-item-container"){
         this.form.dataset.id = e.target.dataset.id
-        addToy = !addToy
-        if (addToy) {
-          this.popUpForm.style.display = 'block'
-        }
+        this.popUpForm.style.display = 'block'
       } else if (e.target.innerText === "Donate"){
-        let deleteItemId = e.target.dataset.id.split("-")[1]
-        let deleteCatId = e.target.dataset.id.split("-")[0]
-        let foundCategory = Category.find(deleteCatId)
-        foundCategory.deleteItem(deleteItemId)
-          .then(() => {
-            this.render()
-          })
-      } else {
-        this.popUpForm.style.display = 'none'
-        addToy = false
+          this.donateItem();
       }
     })
+
+    this.popUpForm.addEventListener('click', e => {
+      this.closeForm(e.target.id)
+    })
+  }
+
+  
+
+  donateItem() {
+    let deleteItemId = e.target.dataset.id.split("-")[1]
+    let deleteCatId = e.target.dataset.id.split("-")[0]
+    let foundCategory = Category.find(deleteCatId)
+    foundCategory.deleteItem(deleteItemId)
+      .then(() => {
+        this.render()
+      })
+  }
+
+  closeForm(elementId) {
+    if(elementId === "pop-up-container" || elementId === "close-form" ) {
+      this.popUpForm.style.display = 'none'
+    }
   }
 
 
