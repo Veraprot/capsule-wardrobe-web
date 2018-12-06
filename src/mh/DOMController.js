@@ -41,6 +41,12 @@ class DOMController {
             this.outfit.innerHTML += selectedCatIds[catId].renderOutfit()
           }
         }
+        this.outfit.addEventListener('click', (e) => {
+          if(e.target.className === "button-class") {
+            let dropCatId = e.target.dataset.id
+            this.outfitDropCategory(dropCatId, selectedCatIds)
+          }
+        })
       }
     })
 
@@ -49,7 +55,13 @@ class DOMController {
     })
   }
 
-
+  outfitDropCategory(dropCatId, selectedCatIds) {
+    delete selectedCatIds[dropCatId]
+    this.outfit.innerHTML=""
+    for (let catId in selectedCatIds) {
+      this.outfit.innerHTML += selectedCatIds[catId].renderOutfit()
+    }
+  }
 
   donateItem(e) {
     let deleteItemId = e.target.dataset.id.split("-")[1]
