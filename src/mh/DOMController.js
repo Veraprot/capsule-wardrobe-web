@@ -1,7 +1,8 @@
 class DOMController {
   constructor() {
     this.main = document.getElementById('category-collection')
-    this.outfit = document.getElementById('outfit-list')
+    this.outfit = document.getElementById('outfit-collection')
+    this.outfitList = document.getElementById('outfit-list')
     this.form = document.getElementById('capsule-form')
     this.popUpForm = document.getElementById('pop-up-container')
   }
@@ -59,11 +60,21 @@ formListener(){
 }
 
 
-
+  renderOutfit() {
+    this.outfit.addEventListener('click', event=> {
+      if(event.target.id == "new-outfit") {
+        this.createOutfit();
+        console.log(Outfit.all);
+      }
+      else {
+        this.activateOutfit(event.target);
+      }
+    });
+  }
 
   createOutfit() {
     Outfit.createNew();
-    this.outfit.innerHTML += Outfit.all[Outfit.all.length - 1].renderOutfitCard()
+    this.outfitList.innerHTML += Outfit.all[Outfit.all.length - 1].renderOutfitCard()
   }
 
   activateOutfit(outfit) {

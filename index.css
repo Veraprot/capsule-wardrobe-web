@@ -142,6 +142,7 @@ button:hover {
 }
 
 #outfit-collection {
+  margin-top: 100px;
   border: 1px soid black;
   width: 350px;
   height: 70px;
@@ -167,4 +168,28 @@ button:hover {
 #outfit-list {
   display: flex;
   flex-direction: row;
+}
+
+.carousel {
+  margin-bottom: 100px;
+  background: #EEE;
+}
+
+.outfit-cell {
+  width: 66%;
+  height: 200px;
+  margin-right: 10px;
+  background: #8C8;
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+
+/* cell number */
+.outfit-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(carousel-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
 }
