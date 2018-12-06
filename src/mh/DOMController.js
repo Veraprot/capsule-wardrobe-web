@@ -36,6 +36,9 @@ class DOMController {
         let deleteCatId = e.target.dataset.id.split("-")[0]
         let foundCategory = Category.find(deleteCatId)
         foundCategory.deleteItem(deleteItemId)
+          .then(() => {
+            this.render()
+          })
       } else {
         this.popUpForm.style.display = 'none'
         addToy = false
@@ -52,9 +55,11 @@ formListener(){
     let foundCategory = Category.find(addItemId)
     let addedItem = { name: e.target.name.value, image: e.target.image.value, category_id: addItemId};
     foundCategory.addItem(addedItem)
-
-    controller.form.reset()
-    controller.popUpForm.style.display = 'none'
+      .then(() => {
+        this.render()
+      })
+    this.form.reset()
+    this.popUpForm.style.display = 'none'
   })
 }
 
