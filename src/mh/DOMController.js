@@ -2,6 +2,7 @@ class DOMController {
   constructor() {
     this.main = document.getElementById('category-collection')
     this.form = document.getElementById('capsule-form')
+    this.outfit = document.getElementById('outfit-creator')
     this.popUpForm = document.getElementById('pop-up-container')
   }
 
@@ -16,18 +17,24 @@ class DOMController {
       this.main.innerHTML = Category.all.map(t => t.renderCard()).join('');
     }
 
-  static renderAddedItem(newItemObj){
-    console.log(this.main);
-    debugger
-  }
-
   containerListener() {
+    let selectedCatIds = []
     this.main.addEventListener('click', (e)=> {
       if(e.target.className === "category-item add-item-container"){
         this.form.dataset.id = e.target.dataset.id
         this.popUpForm.style.display = 'block'
       } else if (e.target.innerText === "Donate"){
           this.donateItem();
+      } else if (e.target.className === "item-image" ){
+        let selectedItemId = e.target.dataset.id
+        let foundItem = Item.find(selectedItemId)
+        if (selectedCatIds.includes(foundItem.category_id)) {
+          console.log("already added", selectedCatIds);
+          // debugger
+        } else {
+          selectedCatIds.push(foundItem.category_id)
+          this.outfit.innerHTML += foundItem.renderOutfit()
+        }    ///// RESET selectedCatIds ONCE APPENDED
       }
     })
 
@@ -36,7 +43,7 @@ class DOMController {
     })
   }
 
-  
+
 
   donateItem() {
     let deleteItemId = e.target.dataset.id.split("-")[1]
@@ -70,4 +77,5 @@ class DOMController {
       this.popUpForm.style.display = 'none'
     })
   }
+
 }
