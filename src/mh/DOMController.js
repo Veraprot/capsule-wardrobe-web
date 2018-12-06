@@ -24,9 +24,8 @@ class DOMController {
         this.form.dataset.id = e.target.dataset.id
         this.popUpForm.style.display = 'block'
       } else if (e.target.innerText === "Donate"){
-          this.donateItem();
+          this.donateItem(e);
       } else if (e.target.className === "item-image" ){
-        console.log(selectedCatIds, e);
         let selectedItemId = e.target.dataset.id
         let foundItem = Item.find(selectedItemId)
         if (selectedCatIds[foundItem.category_id] === undefined) {
@@ -52,7 +51,7 @@ class DOMController {
 
 
 
-  donateItem() {
+  donateItem(e) {
     let deleteItemId = e.target.dataset.id.split("-")[1]
     let deleteCatId = e.target.dataset.id.split("-")[0]
     let foundCategory = Category.find(deleteCatId)
