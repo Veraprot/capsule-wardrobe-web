@@ -19,6 +19,10 @@ class Outfit {
             </div>`
   }
 
+  renderFlickityCard() {
+    return `<div class="outfit-cell">...</div>`
+  }
+
   activateOutfit(outfit) {
     outfit.classList.all('active');
   }
