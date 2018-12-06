@@ -56,8 +56,11 @@ class DOMController {
   }
 
   outfitDropCategory(dropCatId, selectedCatIds) {
-    console.log(dropCatId, selectedCatIds);
-    debugger
+    delete selectedCatIds[dropCatId]
+    this.outfit.innerHTML=""
+    for (let catId in selectedCatIds) {
+      this.outfit.innerHTML += selectedCatIds[catId].renderOutfit()
+    }
   }
 
   donateItem(e) {
