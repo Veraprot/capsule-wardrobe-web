@@ -22,23 +22,23 @@ class DOMController {
     debugger
   }
 
-containerListener(){
-  let addToy = false
-  this.main.addEventListener('click', (e)=>{
-    if(e.target.className === "category-item add-item-container"){
-      this.form.dataset.id = e.target.dataset.id
-      addToy = !addToy
-      if (addToy) {
-        this.popUpForm.style.display = 'block'
+  containerListener() {
+    let addToy = false
+    this.main.addEventListener('click', (e)=>{
+      if(e.target.className === "category-item add-item-container"){
+        this.form.dataset.id = e.target.dataset.id
+        addToy = !addToy
+        if (addToy) {
+          this.popUpForm.style.display = 'block'
+        }
+      } else if (e.target.innerText === "Donate"){
+        console.log(e.target.id);
+        // let deleteItemId = (parseInt(e.target.id))
+      } else {
+        this.popUpForm.style.display = 'none'
+        addToy = false
       }
-    } else if(e.target.innerText = "Donate"){
-      (e.target.id);
-      let deleteItemId = (parseInt(e.target.id))
-
-    } else {
-      this.popUpForm.style.display = 'none'
-    }
-  })
+    })
   }
 
 
