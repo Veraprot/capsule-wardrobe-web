@@ -9,7 +9,7 @@ class JSONAPIAdapter{
     }
 
   postItem(obj) {
-    return this._send(this.baseURI + `/${obj.category_id}/items`, {
+    return this._send(`${this.baseURI}/${obj.category_id}/items`, {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -17,6 +17,10 @@ class JSONAPIAdapter{
       },
       body: JSON.stringify(obj)
     })
+  }
+
+  delete(itemId, catId){
+    return fetch(`${this.baseURI}/${catId}/items/${itemId}`, {method: 'DELETE'})
   }
 
   _send(endpoint, options) {
