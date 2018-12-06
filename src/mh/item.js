@@ -14,7 +14,7 @@ class Item {
     return Item.all.find(e => e.id == id)
   }
   renderOutfit() {
-      return `<li class="category-item" id="${this.category_id}">${this.name}  <img class="item-image" data-id="${this.id}" src=${this.image}></li>`
+      return `<li class="category-item" id="category${this.category_id}">${this.name}  <img class="item-image" data-id="${this.id}" src=${this.image}></li>`
     }
 }
 
