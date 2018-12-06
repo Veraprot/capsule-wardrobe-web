@@ -18,7 +18,7 @@ class DOMController {
     }
 
   containerListener() {
-    let selectedCatIds = []
+    let selectedCatIds = {}
     this.main.addEventListener('click', (e)=> {
       if(e.target.className === "category-item add-item-container"){
         this.form.dataset.id = e.target.dataset.id
@@ -26,15 +26,19 @@ class DOMController {
       } else if (e.target.innerText === "Donate"){
           this.donateItem();
       } else if (e.target.className === "item-image" ){
+        console.log(selectedCatIds, e);
         let selectedItemId = e.target.dataset.id
         let foundItem = Item.find(selectedItemId)
-        if (selectedCatIds.includes(foundItem.category_id)) {
-          console.log("already added", selectedCatIds);
-          // debugger
-        } else {
-          selectedCatIds.push(foundItem.category_id)
+        if (selectedCatIds[foundItem.category_id] === undefined) {
+          selectedCatIds[foundItem.category_id] = foundItem
           this.outfit.innerHTML += foundItem.renderOutfit()
-        }    ///// RESET selectedCatIds ONCE APPENDED
+        } else {
+          selectedCatIds[foundItem.category_id] = foundItem
+          this.outfit.innerHTML=""
+          for (let catId in selectedCatIds) {
+            this.outfit.innerHTML += selectedCatIds[catId].renderOutfit()
+          }
+        }
       }
     })
 
