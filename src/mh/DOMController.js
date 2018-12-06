@@ -31,7 +31,10 @@ class DOMController {
         let foundItem = Item.find(selectedItemId)
         if (selectedCatIds[foundItem.category_id] === undefined) {
           selectedCatIds[foundItem.category_id] = foundItem
-          this.outfit.innerHTML += foundItem.renderOutfit()
+          this.outfit.innerHTML=""
+          for (let catId in selectedCatIds) {
+            this.outfit.innerHTML += selectedCatIds[catId].renderOutfit()
+          }
         } else {
           selectedCatIds[foundItem.category_id] = foundItem
           this.outfit.innerHTML=""
