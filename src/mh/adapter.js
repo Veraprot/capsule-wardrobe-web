@@ -19,6 +19,19 @@ class JSONAPIAdapter{
     })
   }
 
+  postOutfit(obj) {
+    debugger
+    return this._send(`${this.baseURI}`, {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({items: obj})
+    })
+  }
+
+
   delete(itemId, catId){
     return fetch(`${this.baseURI}/${catId}/items/${itemId}`, {method: 'DELETE'})
   }
