@@ -6,6 +6,9 @@ class DOMController {
     this.addOutfit = document.getElementById('new-outfit')
     this.appendButton = document.querySelector('.button--append');
     this.popUpForm = document.getElementById('pop-up-container')
+    this.flkty = new Flickity( '.carousel', {
+      initialIndex: 1
+    });
   }
 
   init() {
@@ -102,9 +105,9 @@ class DOMController {
     })
   }
 
-  createCell(flkty) {
+  createCell() {
     let cellElems = [this.makeCell()]
-    flkty.append( cellElems );
+    this.flkty.append( cellElems );
   }
 
   makeCell(cellCount) {
@@ -125,12 +128,9 @@ class DOMController {
   }
 
   createFlickity() {
-    let flkty = new Flickity( '.carousel', {
-      initialIndex: 1
-    });
-    let cellCount = flkty.cells.length;
+    let cellCount = this.flkty.cells.length;
     this.appendButton.addEventListener( 'click', () => {
-      this.createCell(flkty)
+      this.createCell(this.flkty)
     });
     this.makeCell(cellCount)
   }
