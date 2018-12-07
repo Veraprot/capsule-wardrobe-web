@@ -32,6 +32,7 @@ class Category {
       .then(json => {
         json.forEach(categoryObj => {
           let newCategory = new Category(categoryObj)
+          console.log(newCategory)
         })
       })
   }
@@ -40,7 +41,6 @@ class Category {
     return Category.adapter.post(obj)
       .then(json => {
         console.log(json)
-
       })
   }
 

@@ -3,6 +3,8 @@ class DOMController {
     this.main = document.getElementById('category-collection')
     this.form = document.getElementById('capsule-form')
     this.outfit = document.getElementById('outfit-creator')
+    this.addOutfit = document.getElementById('new-outfit')
+    this.appendButton = document.querySelector('.button--append');
     this.popUpForm = document.getElementById('pop-up-container')
   }
 
@@ -10,6 +12,10 @@ class DOMController {
     Category.populateFromAPI()
       .then(() => {
         this.render()
+      })
+    Outfit.populateFromAPI()
+      .then(() => {
+        this.createFlickity()
       })
   }
 
@@ -96,4 +102,36 @@ class DOMController {
     })
   }
 
+  createCell(flkty) {
+    let cellElems = [this.makeCell()]
+    flkty.append( cellElems );
+  }
+
+  makeCell(cellCount) {
+    if(this.outfit.innerHTML.trim() !== "") {
+      cellCount++;
+      let cell = document.createElement('div');
+      cell.className = 'outfit-cell';
+      let outfitItems = Array.from(this.outfit.getElementsByClassName('item-image')).map(e => e.dataset.id)
+
+      Outfit.createNew(outfitItems)
+      cell.innerHTML =
+        Array.from(this.outfit.getElementsByTagName('img')).map(e => `<img src="${e.src}">`).join('')
+      return cell;
+    }
+    else {
+      this.outfit.innerHTML = "please add some items";
+    }
+  }
+
+  createFlickity() {
+    let flkty = new Flickity( '.carousel', {
+      initialIndex: 1
+    });
+    let cellCount = flkty.cells.length;
+    this.appendButton.addEventListener( 'click', () => {
+      this.createCell(flkty)
+    });
+    this.makeCell(cellCount)
+  }
 }

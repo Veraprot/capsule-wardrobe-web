@@ -1,21 +1,25 @@
 class Outfit {
-  constructor({ items}) { /*id,*/
-    // this.id = id
+  constructor(items) { 
     this.items = items
     Outfit.all.push(this);
   }
 
+  static populateFromAPI() {
+    return Outfit.adapter.getAll()
+      .then(json => {
+        json.forEach(outfitObj => {
+          let newOutfit = new Outfit(outfitObj)
+          console.log(outfitObj)
+          console.log(newOutfit)
+        })
+      })
+  }
+
   static createNew(outfitItems) {
     let createOutfitItems = outfitItems.map((e)=> Item.find(e))
-    let newOutfit = new Outfit({items: createOutfitItems});
-    // return Outfit.adapter.postOutfit(createOutfitItems)
-    //   .then(data => {
-    //     console.log(data);
-      }
-
-  // generateId() {
-  //   this.id = Outfit.all.indexOf(this) + 1;
-  // }
+    let newOutfit = new Outfit( createOutfitItems);
+    console.log(newOutfit);
+  }
 }
 
 Outfit.all = [];
