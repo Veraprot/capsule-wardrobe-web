@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   let appendButton = document.querySelector('.button--append');
+  let outfitReset = document.querySelector('.outfit-creator');
   appendButton.addEventListener( 'click', function() {
     var cellElems = [ makeCell()];
     flkty.append( cellElems );
@@ -29,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
       cellCount++;
       let cell = document.createElement('div');
       cell.className = 'outfit-cell';
-      console.log(outfit);
+      let outfitItems = Array.from(outfit.getElementsByClassName('item-image')).map(e => e.dataset.id)
+
+      Outfit.createNew(outfitItems)
       cell.innerHTML =
         Array.from(outfit.getElementsByTagName('img')).map(e => `<img src="${e.src}">`).join('')
       return cell;
