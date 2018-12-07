@@ -44,7 +44,7 @@ body {
 }
 
 button {
-  position: relative;
+  /* position: relative; */
   background-color: grey;
   border: none;
   border-radius: 5px;
@@ -125,6 +125,16 @@ button:hover {
   font-size: 13px;
 }
 
+.category-item-to-append {
+  border-radius: 5px;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  margin-right: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .category-item {
   border-radius: 5px;
@@ -190,8 +200,9 @@ button:hover {
 }
 
 .carousel {
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   background: #EEE;
+  position: fixed;
 }
 
 .outfit-cell {
@@ -252,4 +263,13 @@ button:hover {
   /* background-color: lavender; */
   color: lightblue;
 
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* padding: 5px; */
+  background-color: white;
+  /* border: 2px solid #4CAF50; */
 }
