@@ -8,7 +8,7 @@ class Item {
     Item.all.push(this)
   }
   render() {
-      return `<li class="category-item">${this.name}  <img class="item-image" data-id="${this.id}" src=${this.image}>Times Worn: ${this.times_worn}<button data-id="${this.category_id}-${this.id}">Donate</button></li>`
+      return `<li class="category-item">${this.name}  <img class="item-image" data-id="${this.id}" src=${this.image}><div class="times_worn" data-id="${this.id}"> Times Worn: ${this.times_worn}</div><button data-id="${this.category_id}-${this.id}">Donate</button></li>`
     }
   static find(id) {
     return Item.all.find(e => e.id == id)

@@ -4,12 +4,14 @@ class DOMController {
     this.form = document.getElementById('capsule-form')
     this.outfit = document.getElementById('outfit-creator')
     this.popUpForm = document.getElementById('pop-up-container')
+    this.itemCounterContainer = document.getElementsByClassName("number-items-available")
   }
 
   init() {
     Category.populateFromAPI()
       .then(() => {
         this.render()
+        this.itemCounter()
       })
   }
 
@@ -94,6 +96,12 @@ class DOMController {
       this.form.reset()
       this.popUpForm.style.display = 'none'
     })
+  }
+
+itemCounter() {
+   // debugger
+   console.log(Item.all.length);
+    this.itemCounterContainer[0].innerText = `You have ${Item.all.length} items in your closet!`
   }
 
 }

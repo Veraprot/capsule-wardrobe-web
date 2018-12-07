@@ -11,7 +11,7 @@ body {
   /* background-color: grey; */
   opacity: .8;
   height: 7rem;
-  padding: 2rem;
+  /* padding: 2rem; */
 }
 
 #toy-header img {
@@ -244,4 +244,12 @@ button:hover {
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
+}
+
+.number-items-available{
+  font-size: 15px;
+  text-align: center;
+  /* background-color: lavender; */
+  color: lightblue;
+
 }
